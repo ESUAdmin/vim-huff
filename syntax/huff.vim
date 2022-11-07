@@ -10,6 +10,8 @@ syn keyword huffTodo TODO XX FIXME NOTE TBD
 syn keyword huffKeyword
     \ takes
     \ returns
+    \ constant
+    \ function
 
 syn keyword huffMacro nextgroup=huffMacroName skipwhite skipempty
     \ macro
