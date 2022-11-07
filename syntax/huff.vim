@@ -68,6 +68,48 @@ syntax match huffRegularOpcode "\<swap\(1[0-6]\|[1-9]\)\>"
 syntax match huffRegularOpcode "\<dup\(1[0-6]\|[1-9]\)\>"
 syntax match huffRegularOpcode "\<log\([0-4]\)\>"
 
+syntax keyword etkRegularOpcode
+	\ stop
+	\ add
+	\ mul
+	\ sub
+	\ div
+	\ sdiv
+	\ mod
+	\ smod
+	\ addmod
+	\ mulmod
+	\ exp
+	\ signextend
+	\ lt
+	\ gt
+	\ slt
+	\ sgt
+	\ eq
+	\ iszero
+	\ and
+	\ or
+	\ xor
+	\ not
+	\ byte
+	\ shl
+	\ shr
+	\ sar
+	\ keccak256
+	\ pop
+	\ mload
+	\ mstore
+	\ mstore8
+	\ jump
+	\ jumpi
+	\ pc
+	\ msize
+	\ gas
+	\ jumpdest
+	\ revert
+	\ invalid
+	\ return
+
 hi def link huffConstant Constant
 hi def link huffEnvOpcode Special
 hi def link huffTrieOpcode Special
