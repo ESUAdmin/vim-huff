@@ -16,12 +16,6 @@ syn keyword huffKeyword
 
 syn match huffFunctionCall          /\zs[a-zA-Z_$][0-9a-zA-Z_$]*\ze(.*)/
 
-syn keyword huffFunction nextgroup=huffFunctionName skipwhite skipempty
-    \ function
-
-syn match huffFunctionName contained skipwhite skipempty
-    \ '\v<[0-9a-zA-Z_]*'
-
 syn keyword huffMacro nextgroup=huffMacroName skipwhite skipempty
     \ macro
 
@@ -46,13 +40,35 @@ hi def link huffDefine Define
 hi def link huffMethod Special
 hi def link EVMDialect Special
 hi def link huffString String
-hi def link huffFunction Keyword
-hi def link huffFunctionName Function
 hi def link huffFunctionCall PreProc
 hi def link huffMacro Keyword
 hi def link huffMacroName Function
 hi def link huffTemplate Special
 hi def link huffTemplateName Constant
+
+" Function
+syn match   solFunction          /\<function\>/ nextgroup=solFuncName,solFuncArgs skipwhite
+syn match   solFuncName          contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*/ nextgroup=solFuncArgs skipwhite
+syn region  solFuncArgs          contained matchgroup=solFuncParens start='(' end=')' contains=solFuncArgCommas,solBuiltinType nextgroup=solModifierName,solFuncReturns keepend skipwhite skipempty
+syn match   solModifierName      contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*/ nextgroup=solModifierArgs,solModifierName skipwhite
+syn region  solModifierArgs      contained matchgroup=solFuncParens start='(' end=')' contains=solFuncArgCommas nextgroup=solModifierName,solFuncReturns skipwhite
+syn region  solFuncReturns       contained matchgroup=solFuncParens start='(' end=')' contains=solFuncArgCommas,solBuiltinType
+syn match   solFuncArgCommas     contained ','
+
+hi def link solFunction          Type
+hi def link solFuncName          Function
+hi def link solModifierName      Function
+
+" Event
+syn match   solEvent             /\<event\>/ nextgroup=solEventName,solEventArgs skipwhite
+syn match   solEventName         contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*/ nextgroup=solEventArgs skipwhite
+syn region  solEventArgs         contained matchgroup=solFuncParens start='(' end=')' contains=solEventArgCommas,solBuiltinType,solEventArgSpecial skipwhite skipempty
+syn match   solEventArgCommas    contained ','
+syn match   solEventArgSpecial   contained 'indexed'
+
+hi def link solEvent             Type
+hi def link solEventName         Function
+hi def link solEventArgSpecial   Label
 
 
 let b:current_syntax = 'huff'
