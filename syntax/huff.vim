@@ -3,18 +3,74 @@ if exists('b:current_syntax')
   finish
 endif
 
-" Optodes
-syn keyword ioOpcodes sstore sload mstore8 mstore mload pop msize balance address returndatacopy returndatasize extcodecopy extcodesize gasprice caller origin gaslimit difficulty number timestamp coinbase blockhash codecopy codesize calldatacopy calldatasize calldataload callvalue gas
-syn keyword sideEffectOpcodes log4 log3 log2 log1 log0 jumpdest getpc jumpi jump create2 staticcall delegatecall callcode call create
-syn keyword calculationOpcodes not xor or and ror rol sar shr shl keccak sha3 byte iszero eq sgt slt gt lt signextend exp mulmod addmod smod mod sdiv div sub mul add
-syn keyword stopOpcodes selfdestruct invalid revert return stop
-syn keyword stackOpcodes push1 push2 push3 push4 push5 push6 push7 push8 push9 push10 push11 push12 push13 push14 push15 push16 push17 push18 push19 push20 push21 push22 push23 push24 push25 push26 push27 push28 push29 push30 push31 push32 dup1 dup2 dup3 dup4 dup5 dup6 dup7 dup8 dup9 dup10 dup11 dup12 dup13 dup14 dup15 dup16 swap1 swap2 swap3 swap4 swap5 swap6 swap7 swap8 swap9 swap10 swap11 swap12 swap13 swap14 swap15 swap16 sha3
+" Environment opcodes
+syntax keyword huffEnvOpcode
+	\ address
+	\ balance
+	\ origin
+	\ caller
+	\ callvalue
+	\ calldataload
+	\ calldatasize
+	\ calldatacopy
+	\ codesize
+	\ codecopy
+	\ gasprice
+	\ returndatasize
+	\ returndatacopy
+	\ blockhash
+	\ coinbase
+	\ timestamp
+	\ number
+	\ difficulty
+	\ gaslimit
+	\ chainid
+	\ selfbalance
+	\ basefee
 
-hi def link ioOpcodes Special
-hi def link sideEffectOpcodes Special
-hi def link calculationOpcodes Special
-hi def link stopOpcodes Special
-hi def link stackOpcodes Special
+" Trie opcodes
+syntax keyword huffTrieOpcode
+	\ extcodesize
+	\ extcodecopy
+	\ extcodehash
+	\ sload
+	\ sstore
+	\ selfdestruct
+
+" Call opcodes
+syntax keyword huffCallOpcode
+	\ create
+	\ call
+	\ callcode
+	\ delegatecall
+	\ create2
+	\ staticcall
+
+" Push opcodes
+syntax match huffRegularOpcode
+	\ "\<push\(3[1-2]\|[1-9]\|[1-2][0-9]\)\>"
+	\ nextgroup=huffConstant,huffLabelConst,huffExpressionMacro
+	\ skipwhite
+
+" Decimal constant
+syntax match huffConstant	"\<\d*\>"	contained
+" Hex constant
+syntax match huffConstant	"\<0x\x*\>"	contained
+" Binary constant
+syntax match huffConstant	"\<0b[0-1]*\>"	contained
+" Octal constant
+syntax match huffConstant	"\<0o\o*\>"	contained
+
+" Regular opcodes
+syntax match huffRegularOpcode "\<swap\(1[0-6]\|[1-9]\)\>"
+syntax match huffRegularOpcode "\<dup\(1[0-6]\|[1-9]\)\>"
+syntax match huffRegularOpcode "\<log\([0-4]\)\>"
+
+hi def link huffConstant Constant
+hi def link huffEnvOpcode Special
+hi def link huffTrieOpcode Special
+hi def link huffCallOpcode Special
+hi def link huffRegularOpcode Statement
 
 syn match huffMethod '#include'
 syn match huffDefine '#define'
