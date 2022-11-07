@@ -23,9 +23,14 @@ syn keyword huffTodo TODO XX FIXME NOTE TBD
 syn keyword huffKeyword
     \ takes
     \ returns
-    \ constant
 
 syn match huffFunctionCall          /\zs[a-zA-Z_$][0-9a-zA-Z_$]*\ze(.*)/
+
+syn keyword huffConstant nextgroup=huffConstantName skipwhite skipempty
+    \ constant
+
+syn match huffConstantName contained skipwhite skipempty
+    \ '\v<[0-9a-zA-Z_]*'
 
 syn keyword huffMacro nextgroup=huffMacroName skipwhite skipempty
     \ macro
@@ -51,6 +56,8 @@ hi def link huffDefine Define
 hi def link huffMethod Special
 hi def link huffString String
 hi def link huffFunctionCall PreProc
+hi def link huffConstant Keyword
+hi def link huffConstantName Type
 hi def link huffMacro Keyword
 hi def link huffMacroName Function
 hi def link huffTemplate Special
