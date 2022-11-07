@@ -3,7 +3,18 @@ if exists('b:current_syntax')
   finish
 endif
 
-syn keyword EVMDialect stop add sub mul div sdiv mod smod exp not lt gt slt sgt eq iszero and or xor byte shl shr sar addmod mulmod signextend keccak256 pc pop mload mstore mstore8 sload sstore msize gas address balance selfbalance caller callvalue calldataload calldatasize calldatacopy codesize codecopy extcodesize extcodecopy returndatasize returndatacopy extcodehash create create2 call callcode delegatecallcode staticcall return revert selfdestruct invalid log0 log1 log2 log3 log4 chainid origin gasprice blockhash coinbase timestamp number difficulty gaslimit jumpi push1 push2 push3 push4 push5 push6 push7 push8 push9 push10 push11 push12 push13 push14 push15 push16 push17 push18 push19 push20 push21 push22 push23 push24 push25 push26 push27 push28 push29 push30 push31 push32 dup1 dup2 dup3 dup4 dup5 dup6 dup7 dup8 dup9 dup10 dup11 dup12 dup13 dup14 dup15 dup16 swap1 swap2 swap3 swap4 swap5 swap6 swap7 swap8 swap9 swap10 swap11 swap12 swap13 swap14 swap15 swap16 sha3
+" Optodes
+syn keyword ioOpcodes sstore sload mstore8 mstore mload pop msize balance address returndatacopy returndatasize extcodecopy extcodesize gasprice caller origin gaslimit difficulty number timestamp coinbase blockhash codecopy codesize calldatacopy calldatasize calldataload callvalue gas
+syn keyword sideEffectOpcodes log4 log3 log2 log1 log0 jumpdest getpc jumpi jump create2 staticcall delegatecall callcode call create
+syn keyword calculationOpcodes not xor or and ror rol sar shr shl keccak sha3 byte iszero eq sgt slt gt lt signextend exp mulmod addmod smod mod sdiv div sub mul add
+syn keyword stopOpcodes selfdestruct invalid revert return stop
+syn keyword stackOpcodes push1 push2 push3 push4 push5 push6 push7 push8 push9 push10 push11 push12 push13 push14 push15 push16 push17 push18 push19 push20 push21 push22 push23 push24 push25 push26 push27 push28 push29 push30 push31 push32 dup1 dup2 dup3 dup4 dup5 dup6 dup7 dup8 dup9 dup10 dup11 dup12 dup13 dup14 dup15 dup16 swap1 swap2 swap3 swap4 swap5 swap6 swap7 swap8 swap9 swap10 swap11 swap12 swap13 swap14 swap15 swap16 sha3
+
+hi def link ioOpcodes Special
+hi def link sideEffectOpcodes Special
+hi def link calculationOpcodes Special
+hi def link stopOpcodes Special
+hi def link stackOpcodes Special
 
 syn match huffMethod '#include'
 syn match huffDefine '#define'
@@ -38,7 +49,6 @@ hi def link huffComment Comment
 hi def link huffKeyword Keyword
 hi def link huffDefine Define
 hi def link huffMethod Special
-hi def link EVMDialect Special
 hi def link huffString String
 hi def link huffFunctionCall PreProc
 hi def link huffMacro Keyword
