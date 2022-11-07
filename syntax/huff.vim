@@ -3,6 +3,8 @@ if exists('b:current_syntax')
   finish
 endif
 
+
+" Opcodes
 " Environment opcodes
 syntax keyword huffEnvOpcode
 	\ address
@@ -72,6 +74,7 @@ hi def link huffTrieOpcode Special
 hi def link huffCallOpcode Special
 hi def link huffRegularOpcode Statement
 
+" Huff keywords
 syn match huffMethod '#include'
 syn match huffDefine '#define'
 
