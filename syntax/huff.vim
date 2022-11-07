@@ -3,6 +3,8 @@ if exists('b:current_syntax')
   finish
 endif
 
+syn keyword EVMDialect stop add sub mul div sdiv mod smod exp not lt gt slt sgt eq iszero and or xor byte shl shr sar addmod mulmod signextend keccak256 pc pop mload mstore mstore8 sload sstore msize gas address balance selfbalance caller callvalue calldataload calldatasize calldatacopy codesize codecopy extcodesize extcodecopy returndatasize returndatacopy extcodehash create create2 call callcode delegatecallcode staticcall return revert selfdestruct invalid log0 log1 log2 log3 log4 chainid origin gasprice blockhash coinbase timestamp number difficulty gaslimit
+
 syn match huffMethod '#include'
 syn match huffDefine '#define'
 
@@ -35,6 +37,7 @@ hi def link huffComment Comment
 hi def link huffKeyword Keyword
 hi def link huffDefine Define
 hi def link huffMethod Special
+hi def link EVMDialect Special
 hi def link huffString String
 hi def link huffMacro Keyword
 hi def link huffMacroName Function
