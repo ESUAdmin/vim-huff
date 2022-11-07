@@ -68,7 +68,7 @@ syntax match huffRegularOpcode "\<swap\(1[0-6]\|[1-9]\)\>"
 syntax match huffRegularOpcode "\<dup\(1[0-6]\|[1-9]\)\>"
 syntax match huffRegularOpcode "\<log\([0-4]\)\>"
 
-syntax keyword etkRegularOpcode
+syntax keyword huffRegularOpcode
 	\ stop
 	\ add
 	\ mul
