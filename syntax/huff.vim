@@ -109,6 +109,7 @@ syntax keyword huffRegularOpcode
 	\ revert
 	\ invalid
 	\ return
+	\ push0
 
 hi def link huffConstant Constant
 hi def link huffEnvOpcode Special
