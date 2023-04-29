@@ -140,12 +140,6 @@ syn keyword huffMacro nextgroup=huffMacroName skipwhite skipempty
 syn match huffMacroName contained skipwhite skipempty
     \ '\v<[0-9a-zA-Z_]*'
 
-syn keyword huffTemplate nextgroup=huffTemplateName skipwhite skipempty
-    \ template
-
-syn match huffTemplateName contained skipwhite skipempty
-    \ '<[0-9a-zA-z_,]*>'
-
 syn region huffComment          start=/\/\// end=/$/ contains=huffTodo
 syn region huffComment          start=/\/\*/ end=/\*\// contains=huffTodo
 syn region huffString           start=/\v"/ skip=/\v\\./ end=/\v"/
@@ -162,8 +156,6 @@ hi def link huffConstant Keyword
 hi def link huffConstantName Type
 hi def link huffMacro Keyword
 hi def link huffMacroName Function
-hi def link huffTemplate Special
-hi def link huffTemplateName Constant
 
 " Function
 syn match   solFunction          /\<function\>/ nextgroup=solFuncName,solFuncArgs skipwhite
